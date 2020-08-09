@@ -1,0 +1,12 @@
+- name: change hostname of host1
+  hosts: ansiblehost1
+  tasks:
+          - name: Host1
+            hostname:
+                name: "ansiblehost1"
+- name: change hostname of host2
+  hosts: ansiblehost2
+  tasks:
+          - name: Host2
+            hostname:
+                name: "ansiblehost2"

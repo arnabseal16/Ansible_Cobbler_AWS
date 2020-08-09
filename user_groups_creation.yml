@@ -1,0 +1,34 @@
+- name: "Group & User Creation ansiblehost1"
+  hosts: ansiblehost1
+  tasks:
+    - name: "Creating group TestGroup1"
+      group:
+        name: TestGroup1
+        state: present
+    - name: "Creating user user1 with TestGroup1"
+      user:
+        name: user1
+        password: '$1$3teO47d1$ApgFAaWO0sJ.Hi12DKrd01' #Create hash password using mkpasswd --method=md5
+        groups:
+          - TestGroup1
+        state: present
+        shell: /bin/bash
+        createhome: yes
+        home: /home/user1
+- name: "Group & User Creation ansiblehost2"
+  hosts: ansiblehost2
+  tasks:
+    - name: "Create group TestGroup1"
+      group:
+        name: TestGroup1
+        state: present
+    - name: "Creating user user1 with TestGroup1"
+      user:
+        name: user1
+        password: '$1$3teO47d1$ApgFAaWO0sJ.Hi12DKrd01' #Create hash password using mkpasswd --method=md5
+        groups:
+          - TestGroup1
+        state: present
+        shell: /bin/bash
+        createhome: yes
+        home: /home/user1

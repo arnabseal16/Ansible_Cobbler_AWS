@@ -1,0 +1,11 @@
+---
+- name: "Installing HTTPD"
+  include: /home/arnab/ansibletest/roles/httpd/tasks/httpd-install.yml
+- name: "Pre-Tasks"
+  include: /home/arnab/ansibletest/roles/httpd/tasks/pre-tasks_httpd.yml
+- name: "Copy index.html"
+  template: src=/home/arnab/ansibletest/index.html.j2 dest=/var/www/html/index.html
+- name: "Check for Index Page"
+  get_url:
+    url: http://127.0.0.1/index.html
+    dest: /tmp/

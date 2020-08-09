@@ -1,0 +1,52 @@
+- name: "Configure Apache2 - Simple"
+  hosts: ansiblehost1
+  vars:
+    - nameofhost: "Ansible Host 1"
+    - Message: "Test Apache for Host1"
+  pre_tasks:
+    - name: "Check Apache2 Service"
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+    - name: "Enable Firewall"
+      firewalld:
+        service: http
+        permanent: true
+        state: enabled
+    - name: "Disable SELINUX"
+      selinux:
+        state: disabled
+  tasks:
+    - name: "copy index.html"
+      template: src=index.html.j2 dest=/var/www/html/index.html
+    - name: "Check for Index Page"
+      get_url:
+        url: http://127.0.0.1/index.html
+        dest: /tmp/
+- name: "Configure Apache2 - Simple"
+  hosts: ansiblehost2
+  vars:
+    - nameofhost: "Ansible Host 2"
+    - Message: "Test Apache for Host2"
+  pre_tasks:
+    - name: "Check Apache2 Service, enable firewalld, disable firewalld"
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+    - name: "Configure Firewall"
+      firewalld:
+        service: http
+        permanent: true
+        state: enabled
+    - name: "Disable SELINUX"
+      selinux:
+        state: disabled
+  tasks:
+    - name: "copy index.html"
+      template: src=index.html.j2 dest=/var/www/html/index.html
+    - name: "Check for Index Page"
+      get_url:
+        url: http://127.0.0.1/index.html
+        dest: /tmp/

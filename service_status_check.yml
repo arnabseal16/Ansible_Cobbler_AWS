@@ -1,0 +1,30 @@
+- name: "List the installed Packages (ansiblehost1)"
+  hosts: ansiblehost1
+  tasks:
+        - name: "Check for httpd"
+          yum:
+            name: "{{ packages }}"
+          vars:
+            packages:
+            - httpd
+            - httpd-tools
+        - name: "Start"
+          service:
+            name: httpd
+            state: restarted
+            enabled: yes
+- name: "List the installed Packages (asniblehost2)"
+  hosts: ansiblehost2
+  tasks:
+        - name: "Check for httpd"
+          yum:
+            name: "{{ packages }}"
+          vars:
+            packages:
+            - httpd
+            - httpd-tools
+        - name: "Start"
+          service:
+              name: httpd
+              state: restarted
+              enabled: yes

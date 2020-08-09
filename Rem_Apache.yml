@@ -1,0 +1,12 @@
+- name: "Httpd Cleandown"
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: "Remove Httpd"
+      yum:
+        name: httpd
+        state: absent
+    - name: "Remove index.html"
+      file:
+        path: /var/www/html/index.html
+        state: absent

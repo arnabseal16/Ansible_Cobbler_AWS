@@ -1,0 +1,15 @@
+- name: "Install Python3 on Host1"
+  hosts: ansiblehost1
+  tasks:
+          - name: "Installing Python3 on Host1"
+            yum:
+                    name: httpd
+                    state: present
+
+- name: "Install Python3 on Host2"
+  hosts: ansiblehost2
+  tasks:
+          - name: "Installing Python3 on Host2"
+            yum:
+                    name: httpd
+                    state: present

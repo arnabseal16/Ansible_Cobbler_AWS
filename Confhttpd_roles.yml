@@ -1,0 +1,16 @@
+- name: "Configure Apache2 - ansiblehost1"
+  hosts: ansiblehost1
+  gather_facts: no
+  vars:
+    - nameofhost: "Ansible Host 1"
+    - Message: "Test Apache for Host1"
+  roles:
+    - httpd
+- name: "Configure Apache2 - ansiblehost2"
+  hosts: ansiblehost2
+  gather_facts: no
+  vars:
+    - nameofhost: "Ansible Host 1"
+    - Message: "Test Apache for Host1"
+  roles:
+    - httpd

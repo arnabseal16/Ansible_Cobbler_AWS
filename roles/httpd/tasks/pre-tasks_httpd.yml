@@ -1,0 +1,14 @@
+---
+- name: "Check Apache2 Service"
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+- name: "Enable Firewall"
+  firewalld:
+    service: http
+    permanent: true
+    state: enabled
+- name: "Disable SELINUX"
+  selinux:
+    state: disabled
