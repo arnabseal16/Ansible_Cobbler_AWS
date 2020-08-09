@@ -92,7 +92,15 @@ chkconfig cobblerd on
     service cobblerd restart
     cobbler sync
 
-. Import ISO and kick off
+. Import ISO and create profile
 
     mount -o loop CentOS-6.5-i386-bin-DVD1.iso /mnt/
     cobbler import --path=/mnt/ --name=CentOS_6.5
+    
+. Check Available Distros
+    cobbler distro list
+
+. Place Kickstarts in location : /var/lib/cobbler/kickstarts/
+
+. Add Kickstart to profile
+    cobbler profile edit --name=CentOS_6.5 -kickstart=/var/lib/cobbler/kickstarts/<kickstart>.ks sync
